@@ -1,7 +1,6 @@
 import numpy as np
 import cv2
 from numba import jit
-import numpy as np
 
 def init_simulation(height, width, n_populations):
     """
