@@ -150,7 +150,7 @@ def render_simulation(height, width, population_matrix, n_populations, populatio
     display_matrix += np.uint8(food_matrix[:, :, np.newaxis] * food_color)
     cv2.imshow('Population', display_matrix)
 
-def run_simulation(height, width, n_populations, population_colors, RESCALEFACTOR=1):
+def run_simulation(height, width, n_populations, population_colors, RESCALEFACTOR = 1, trackbar_offset = 125):
     """
     Run the simulation.
 
@@ -160,9 +160,9 @@ def run_simulation(height, width, n_populations, population_colors, RESCALEFACTO
         n_populations (int): The number of populations in the simulation.
         population_colors (list): A list of colors for each population.
         RESCALEFACTOR (int, optional): The factor to scale the simulation window. Defaults to 1.
+        trackbar_offset (int, optional): The offset for the trackbar. Defaults to 125.
     """
     WINDOWNAME = 'Population'
-    trackbar_offset = 125
     cv2.namedWindow(WINDOWNAME, cv2.WINDOW_NORMAL)
     cv2.resizeWindow(WINDOWNAME, height*RESCALEFACTOR + trackbar_offset, width*RESCALEFACTOR)
     cv2.setMouseCallback(WINDOWNAME, mouse_callback)
@@ -180,6 +180,3 @@ def run_simulation(height, width, n_populations, population_colors, RESCALEFACTO
         render_simulation(height, width, population_matrix, n_populations, population_colors, food_matrix)
         if cv2.waitKey(1) == ord('q') or cv2.getWindowProperty(WINDOWNAME, cv2.WND_PROP_VISIBLE) <1:
             break
-
-if __name__ == '__main__':
-    run_simulation(250, 250, 2, [(0, 0, 255), (255, 0, 0)], 4)
